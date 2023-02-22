@@ -176,7 +176,7 @@ void	make_map_rec(t_map_info *map_info, char *one_line)
 		{
 			space_line = malloc(len + 1);
 			space_line[len] = 0;
-			ft_memset(space_line, ' ', len);
+			ft_memset(space_line, '*', len);
 			temp = ft_strjoin(map_info->map[i], space_line);
 			free(map_info->map[i]);
 			free(space_line);
@@ -184,6 +184,26 @@ void	make_map_rec(t_map_info *map_info, char *one_line)
 		}
 		i++;
 	}
+}
+
+int	check_space(char *one_line, char *buff)
+{
+	int	i;
+
+	i = 0;
+	if (one_line[0] == 0 && buff[0] == '\n')
+	{
+		free(buff);
+		return (1);
+	}
+	while (buff[i])
+	{
+		if (buff[i] == ' ' || (buff[i] >= 9 && buff[i] <= 13))
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }
 
 void	get_map_info(t_map_info *map_info, char *path)
@@ -205,6 +225,8 @@ void	get_map_info(t_map_info *map_info, char *path)
 		buff = get_next_line(fd);
 		if (buff == NULL)
 			break ;
+		if (check_space(one_line, buff))
+			continue;
 		one_line = get_new_map(map_info, one_line, buff);
 	}
 	make_map_rec(map_info, one_line);
