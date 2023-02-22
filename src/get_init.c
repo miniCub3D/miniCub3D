@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:41:47 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 13:16:23 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:32:25 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,10 @@ void	init_game(t_game *game, int argc, char **argv)
 	game->win = mlx_new_window(game->mlx, TILE_SIZE * RESOLUTION_W, \
 							TILE_SIZE * RESOLUTION_H, "cub3D");
 	game->flame = 0;
-	get_imginfo(game, &(game->imgs.ground), "asset/ground.xpm");
-	get_imginfo(game, &(game->imgs.wall), "asset/wall.xpm");
-	get_imginfo(game, &(game->imgs.cltb), "asset/cltb.xpm");
-	get_imginfo(game, &(game->imgs.exit), "asset/exit.xpm");
-	get_imginfo(game, &(game->imgs.number), "asset/num_tree.xpm");
-	get_imginfo(game, &(game->imgs.player1), "asset/player1.xpm");
-	get_imginfo(game, &(game->imgs.player2), "asset/player2.xpm");
-	get_imginfo(game, &(game->imgs.patrol1), "asset/patrol1.xpm");
-	get_imginfo(game, &(game->imgs.patrol2), "asset/patrol2.xpm");
+	get_imginfo(game, &(game->imgs.wall_no), game->map_info.texture_no);
+	get_imginfo(game, &(game->imgs.wall_so), game->map_info.texture_so);
+	get_imginfo(game, &(game->imgs.wall_we), game->map_info.texture_we);
+	get_imginfo(game, &(game->imgs.wall_ea), game->map_info.texture_ea);
 }
 
 void	get_imginfo(t_game *game, t_img *image, char *path)

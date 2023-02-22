@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 11:34:40 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:31:14 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,10 @@ typedef struct s_img
 
 typedef struct s_imgs
 {
-	t_img	ground;
-	t_img	wall;
-	t_img	cltb;
-	t_img	exit;
-	t_img	number;
-	t_img	player1;
-	t_img	player2;
-	t_img	patrol1;
-	t_img	patrol2;
+	t_img	wall_no;
+	t_img	wall_so;
+	t_img	wall_we;
+	t_img	wall_ea;
 }		t_imgs;
 
 typedef struct s_play_info
