@@ -62,18 +62,8 @@ void	map_validation(t_game *game)
 {
 	int	i;
 
-	if (game->map_info.width == -1)
-		print_err("Invalid map\n");
-	i = 0;
-	while (i < game->map_info.width * game->map_info.height)
-	{
-		check_tile1(game, &(game->map_info), i);
-		check_tile2(game, &(game->map_info), i);
-		i++;
-	}
-	// if (game->map_info.cltb_cnt == 0 || \
-	// 		game->play_info.player_loc == -1 || game->map_info.exit_point == -1)
-	// 	print_err("Invalid map\n");
+	printf("함수 하나 호출(jin)");
+	printf("함수 하나 호출(s..hso)");
 }
 
 void	render_map(t_game *game)
