@@ -145,9 +145,13 @@ int	get_map_setting(t_map_info *map_info, int fd)
 char	*get_new_map(t_map_info *map_info, char *one_line, char *buff)
 {
 	char	*temp;
-	
-	if (map_info->width < (int)ft_strlen(buff))
-		map_info->width = (int)ft_strlen(buff);
+	int		len;
+
+	len = (int)ft_strlen(buff);
+	if (len == 0)
+		print_err("error~");
+	if (map_info->width < len)
+		map_info->width = len;
 	map_info->height++;
 	temp = ft_strjoin(one_line, buff);
 	free(buff);
