@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:41:47 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 12:30:26 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:12:51 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	init_map_info(t_map_info *map_info, t_game *game, char **argv)
 	map_info->height = 0;
 	map_info->color_c.r = -1;
 	map_info->color_f.r = -1;
+	map_info->texture_no = NULL;
+	map_info->texture_so = NULL;
+	map_info->texture_we = NULL;
+	map_info->texture_ea = NULL;
 	get_map_info(&(game->map_info), argv[1]);
 }
 
@@ -127,12 +131,12 @@ int	get_map_setting(t_map_info *map_info, int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
+		if (line[0] == '\n')
+			continue ;
 		key_value = ft_split(line, ' ');
 		if (*(key_value + 1) == NULL)
-		{
-			printf("개행\n");
-			continue;
-		}
+			print_err("Invalid Input\n");
+		printf("debug: %d %s\n", line_cnt, key_value[0]);
 		len_value = ft_strlen(key_value[1]);
 		if (key_value[1][len_value - 1] == '\n')
 			key_value[1][len_value - 1] = '\0';
