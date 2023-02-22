@@ -2,20 +2,21 @@
 
 int	main_loop(t_game *game)
 {
-	render_map(game);
-	if (game->flame > 30)
-		put_specified_image(game, PLAYER1, game->play_info.player_loc);
-	else
-		put_specified_image(game, PLAYER2, game->play_info.player_loc);
-	if (game->flame > 30)
-		put_specified_image(game, PATROL1, game->play_info.patrol_loc);
-	else
-		put_specified_image(game, PATROL2, game->play_info.patrol_loc);
-	if (game->play_info.player_loc == game->play_info.patrol_loc)
-		exit_game(game);
-	game->flame++;
-	if (game->flame > 60)
-		game->flame = 0;
+	(void)game;
+	// render_map(game);
+	// if (game->flame > 30)
+	// 	put_specified_image(game, PLAYER1, game->play_info.player_loc);
+	// else
+	// 	put_specified_image(game, PLAYER2, game->play_info.player_loc);
+	// if (game->flame > 30)
+	// 	put_specified_image(game, PATROL1, game->play_info.patrol_loc);
+	// else
+	// 	put_specified_image(game, PATROL2, game->play_info.patrol_loc);
+	// if (game->play_info.player_loc == game->play_info.patrol_loc)
+	// 	exit_game(game);
+	// game->flame++;
+	// if (game->flame > 60)
+	// 	game->flame = 0;
 	return (0);
 }
 

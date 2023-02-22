@@ -62,8 +62,8 @@ void	check_only01_unique_player(t_game *game)
 		{
 			if (game->map_info.map[r][c] == 'N' || game->map_info.map[r][c] == 'E' || game->map_info.map[r][c] == 'W' || game->map_info.map[r][c] == 'S')
 			{
-				game->play_info.player_r = r;
-				game->play_info.player_c = c;
+				game->play_info.x = r;
+				game->play_info.y = c;
 				player_cnt++;
 				continue ;
 			}
@@ -108,15 +108,16 @@ void	render_map(t_game *game)
 
 void	render_number(t_game *game)
 {
-	char		*mv_cnt;
+	(void)game;
+	// char		*mv_cnt;
 
-	put_specified_image(game, NUMBER, 0);
-	mv_cnt = ft_itoa(game->play_info.move_cnt);
-	if (mv_cnt == NULL)
-	{
-		perror("Error");
-		exit(0);
-	}
-	mlx_string_put(game->mlx, game->win, 15, 11, 0, mv_cnt);
-	free(mv_cnt);
+	// put_specified_image(game, NUMBER, 0);
+	// mv_cnt = ft_itoa(game->play_info.move_cnt);
+	// if (mv_cnt == NULL)
+	// {
+	// 	perror("Error");
+	// 	exit(0);
+	// }
+	// mlx_string_put(game->mlx, game->win, 15, 11, 0, mv_cnt);
+	// free(mv_cnt);
 }
