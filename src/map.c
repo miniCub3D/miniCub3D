@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:42:45 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 15:30:47 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:55:45 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,38 @@ void	check_tile2(t_game *game, t_map_info *map_info, int i)
 	(void)i;
 }
 
+void	check_only01_unique_player(t_game *game)
+{
+	int	r;
+	int	c;
+	int	player_cnt;
+
+	r = -1;
+	player_cnt = 0;
+	printf("height: %d\nwidth: %d\n", game->map_info.height, game->map_info.width);
+	while (++r < game->map_info.height)
+	{
+		c = -1;
+		while (++c < game->map_info.width)
+		{
+			if (game->map_info.map[r][c] == 'N' || game->map_info.map[r][c] == 'E' || game->map_info.map[r][c] == 'W' || game->map_info.map[r][c] == 'S')
+			{
+				game->play_info.player_r = r;
+				game->play_info.player_c = c;
+				player_cnt++;
+				continue ;
+			}
+			if (game->map_info.map[r][c] != '0' && game->map_info.map[r][c] != '1' && game->map_info.map[r][c] != ' ')
+				print_err("Invalid Element\n");
+		}
+	}
+	if (player_cnt != 1)
+		print_err("Too many or few player\n");
+}
+
 void	map_validation(t_game *game)
 {
-	int	i;
-
-	printf("함수 하나 호출(jin)");
-	printf("함수 하나 호출(s..hso)");
+	check_only01_unique_player(game);
 }
 
 void	render_map(t_game *game)
