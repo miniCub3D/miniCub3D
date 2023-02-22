@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 15:08:23 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:32:51 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ typedef struct s_imgs
 
 typedef struct s_play_info
 {
-	int			player_loc;
-	int			patrol_loc;
+	int			player_r;
+	int			player_c;
 	int			move_cnt;
 	int			score;
 }		t_play_info;
