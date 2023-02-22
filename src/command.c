@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:41:13 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 12:23:11 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:26:42 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int	key_hook(int key_code, t_game *game)
 
 void	move_player(t_game *game, int loc_change)
 {
-	if (game->map_info.map[game->play_info.player_loc + loc_change] != '1')
-	{
-		game->play_info.player_loc += loc_change;
-		game->play_info.move_cnt++;
-		printf("movement_cnt: %d\n", game->play_info.move_cnt);
-	}
-	if (game->map_info.map[game->play_info.patrol_loc + loc_change] != '1')
-		game->play_info.patrol_loc += loc_change;
+	// if (game->map_info.map[game->play_info.player_loc + loc_change] != '1')
+	// {
+	// 	game->play_info.player_loc += loc_change;
+	// 	game->play_info.move_cnt++;
+	// 	printf("movement_cnt: %d\n", game->play_info.move_cnt);
+	// }
+	// if (game->map_info.map[game->play_info.patrol_loc + loc_change] != '1')
+	// 	game->play_info.patrol_loc += loc_change;
 	// if (game->play_info.player_loc == game->map_info.exit_point)
 	// {
 	// 	if (game->map_info.cltb_cnt == 0 && \
@@ -54,10 +54,12 @@ void	move_player(t_game *game, int loc_change)
 	// 	else
 	// 		exit_game(game);
 	// }
-	if (game->map_info.map[game->play_info.player_loc] == 'C')
-	{
-		game->play_info.score += 50;
-		game->map_info.map[game->play_info.player_loc] = '0';
-		// game->map_info.cltb_cnt--;
-	}
+	// if (game->map_info.map[game->play_info.player_loc] == 'C')
+	// {
+	// 	game->play_info.score += 50;
+	// 	game->map_info.map[game->play_info.player_loc] = '0';
+	// 	// game->map_info.cltb_cnt--;
+	// }
+	(void)game;
+	(void)loc_change;
 }
