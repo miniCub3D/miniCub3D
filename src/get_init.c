@@ -147,7 +147,7 @@ char	*get_new_map(t_map_info *map_info, char *one_line, char *buff)
 	char	*temp;
 	int		len;
 
-	len = (int)ft_strlen(buff);
+	len = (int)ft_strlen(buff) - 1;
 	if (len == 0)
 		print_err("error~");
 	if (map_info->width < len)
@@ -175,6 +175,7 @@ void	make_map_rec(t_map_info *map_info, char *one_line)
 		if (len > 0)
 		{
 			space_line = malloc(len + 1);
+			space_line[len] = 0;
 			ft_memset(space_line, ' ', len);
 			temp = ft_strjoin(map_info->map[i], space_line);
 			free(map_info->map[i]);
@@ -206,5 +207,9 @@ void	get_map_info(t_map_info *map_info, char *path)
 			break ;
 		one_line = get_new_map(map_info, one_line, buff);
 	}
-	printf("%s",one_line);
+	make_map_rec(map_info, one_line);
+	for (int i=0; i<map_info->height; i++)
+	{
+		printf("%s\n",map_info->map[i]);
+	}
 }
