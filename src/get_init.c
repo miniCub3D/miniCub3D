@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:41:47 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 13:12:51 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:16:23 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ int	get_map_setting(t_map_info *map_info, int fd)
 		key_value = ft_split(line, ' ');
 		if (*(key_value + 1) == NULL)
 			print_err("Invalid Input\n");
-		printf("debug: %d %s\n", line_cnt, key_value[0]);
 		len_value = ft_strlen(key_value[1]);
 		if (key_value[1][len_value - 1] == '\n')
 			key_value[1][len_value - 1] = '\0';
@@ -158,7 +157,6 @@ void	get_map_info(t_map_info *map_info, char *path)
 	if (fd == -1)
 		print_err("opening file");
 
-	// 지도 정보 파싱
 	get_map_setting(map_info, fd);
 
 	while (fd >= 0)
