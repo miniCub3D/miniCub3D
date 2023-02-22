@@ -93,7 +93,7 @@ typedef struct s_map_info
 {
 	int		width;
 	int		height;
-	char	*map;
+	char	**map;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;

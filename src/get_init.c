@@ -142,11 +142,50 @@ int	get_map_setting(t_map_info *map_info, int fd)
 	return (0);
 }
 
+char	*get_new_map(t_map_info *map_info, char *one_line, char *buff)
+{
+	char	*temp;
+	
+	if (map_info->width < (int)ft_strlen(buff))
+		map_info->width = (int)ft_strlen(buff);
+	map_info->height++;
+	temp = ft_strjoin(one_line, buff);
+	free(buff);
+	free(one_line);
+	return temp;
+}
+
+void	make_map_rec(t_map_info *map_info, char *one_line)
+{
+	int		i;
+	int		len;
+	char	*space_line;
+	char	*temp;
+
+	i = 0;
+	map_info->map = ft_split(one_line, '\n');
+	free(one_line);
+	while (i < map_info->height)
+	{
+		len = map_info->width - ft_strlen(map_info->map[i]);
+		if (len > 0)
+		{
+			space_line = malloc(len + 1);
+			ft_memset(space_line, ' ', len);
+			temp = ft_strjoin(map_info->map[i], space_line);
+			free(map_info->map[i]);
+			free(space_line);
+			map_info->map[i] = temp;
+		}
+		i++;
+	}
+}
+
 void	get_map_info(t_map_info *map_info, char *path)
 {
 	int		fd;
-	int		len;
 	char	*buff;
+	char	*one_line;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -154,22 +193,14 @@ void	get_map_info(t_map_info *map_info, char *path)
 
 	get_map_setting(map_info, fd);
 
+	one_line = malloc(1);
+	one_line[0] = 0;
 	while (fd >= 0)
 	{
 		buff = get_next_line(fd);
 		if (buff == NULL)
 			break ;
-		len = ft_strlen(buff);
-		if (len == 0 && ft_strlen(map_info->map) != 0)
-			break ;
-		if (buff[len - 1] == '\n')
-			len = len -1;
-		if (map_info->width != -1 && map_info->width != len)
-			print_err("Invalid Map");
-		ft_buffncat(&(map_info->map), buff, -1, len);
-		if (map_info->width == -1)
-			map_info->width = ft_strlen(map_info->map);
-		map_info->height++;
-		free(buff);
+		one_line = get_new_map(map_info, *one_line, buff);
 	}
+	printf("%s",one_line);
 }
