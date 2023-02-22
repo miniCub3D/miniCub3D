@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 13:31:14 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:08:23 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@
 
 # define RESOLUTION_W 1920
 # define RESOLUTION_H 1080
+
+# define WALL_NO 1
+# define WALL_SO 2
+# define WALL_WE 3
+# define WALL_EA 4
 
 typedef struct s_color
 {
