@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:41:47 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 15:07:12 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:28:53 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	init_map_info(t_map_info *map_info, t_game *game, char **argv)
 {
-	map_info->map = (char *)malloc(sizeof(char) * 1);
-	if (map_info->map == NULL)
-	{
-		perror("Error");
-		exit(0);
-	}
-	map_info->map[0] = '\0';
+	// map_info->map = (char *)malloc(sizeof(char) * 1);
+	// if (map_info->map == NULL)
+	// {
+	// 	perror("Error");
+	// 	exit(0);
+	// }
+	// map_info->map[0] = '\0';
 	map_info->width = -1;
 	map_info->height = 0;
 	map_info->color_c.r = -1;
@@ -200,7 +200,7 @@ void	get_map_info(t_map_info *map_info, char *path)
 		buff = get_next_line(fd);
 		if (buff == NULL)
 			break ;
-		one_line = get_new_map(map_info, *one_line, buff);
+		one_line = get_new_map(map_info, one_line, buff);
 	}
 	printf("%s",one_line);
 }

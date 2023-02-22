@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:42:45 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 12:23:50 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:30:47 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,48 @@
 
 void	check_tile1(t_game *game, t_map_info *map_info, int i)
 {
-	if (i / map_info->width == 0 || i / map_info->width == map_info->height -1 || \
-		i % map_info->width == 0 || i % map_info->width == map_info->width -1)
-	{
-		if (map_info->map[i] != '1')
-			print_err("Invalid map: Invalid Wall\n");
-	}
+	// if (i / map_info->width == 0 || i / map_info->width == map_info->height -1 || \
+	// 	i % map_info->width == 0 || i % map_info->width == map_info->width -1)
+	// {
+	// 	if (map_info->map[i] != '1')
+	// 		print_err("Invalid map: Invalid Wall\n");
+	// }
 	// else if (map_info->map[i] == 'C')
 	// 	map_info->cltb_cnt++;
-	else if (map_info->map[i] == 'P')
-	{
-		if (game->play_info.player_loc == -1)
-			game->play_info.player_loc = i;
-		else
-			print_err("Invalid map: Too Many Starting Point\n");
-	}
+	// else if (map_info->map[i] == 'P')
+	// {
+	// 	if (game->play_info.player_loc == -1)
+	// 		game->play_info.player_loc = i;
+	// 	else
+	// 		print_err("Invalid map: Too Many Starting Point\n");
+	// }
+	(void)game;
+	(void)map_info;
+	(void)i;
 }
 
 void	check_tile2(t_game *game, t_map_info *map_info, int i)
 {
-	if (map_info->map[i] == 'M')
-	{
-		if (game->play_info.patrol_loc == -1)
-			game->play_info.patrol_loc = i;
-		else
-			print_err("Invalid map: Too Many Patrol\n");
-	}
-	else if (map_info->map[i] == 'E')
-	{
-		// if (map_info->exit_point == -1)
-		// 	map_info->exit_point = i;
-		// else
-			print_err("Invalid map: Too Many Exit\n");
-	}
-	else if (map_info->map[i] != '1' && map_info->map[i] != '0' && \
-			map_info->map[i] != 'C' && map_info->map[i] != 'P')
-		print_err("Invalid map: Unexpected component\n");
+	// if (map_info->map[i] == 'M')
+	// {
+	// 	if (game->play_info.patrol_loc == -1)
+	// 		game->play_info.patrol_loc = i;
+	// 	else
+	// 		print_err("Invalid map: Too Many Patrol\n");
+	// }
+	// else if (map_info->map[i] == 'E')
+	// {
+	// 	// if (map_info->exit_point == -1)
+	// 	// 	map_info->exit_point = i;
+	// 	// else
+	// 		print_err("Invalid map: Too Many Exit\n");
+	// }
+	// else if (map_info->map[i] != '1' && map_info->map[i] != '0' && \
+	// 		map_info->map[i] != 'C' && map_info->map[i] != 'P')
+	// 	print_err("Invalid map: Unexpected component\n");
+	(void)game;
+	(void)map_info;
+	(void)i;
 }
 
 void	map_validation(t_game *game)
@@ -83,17 +89,17 @@ void	render_map(t_game *game)
 	i = 0;
 	while (i < w * h)
 	{
-		put_specified_image(game, GROUND, i);
-		if (map_info->map[i] == '1')
-			put_specified_image(game, WALL, i);
-		if (map_info->map[i] == 'C')
-			put_specified_image(game, CLTB, i);
-		if (map_info->map[i] == 'E')
-			put_specified_image(game, EXIT, i);
+		// put_specified_image(game, GROUND, i);
+		// if (map_info->map[i] == '1')
+		// 	put_specified_image(game, WALL, i);
+		// if (map_info->map[i] == 'C')
+		// 	put_specified_image(game, CLTB, i);
+		// if (map_info->map[i] == 'E')
+		// 	put_specified_image(game, EXIT, i);
 		i++;
 	}
-	put_specified_image(game, NUMBER, 0);
-	render_number(game);
+	// put_specified_image(game, NUMBER, 0);
+	// render_number(game);
 }
 
 void	render_number(t_game *game)
