@@ -74,16 +74,16 @@ void	set_color(t_color *color, char *str_rgb)
 	while (*(tmp_rgb++))
 		color_cnt++;
 	if (color_cnt != 3)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 	color->r = ft_atoi(rgb[0]);
 	color->g = ft_atoi(rgb[1]);
 	color->b = ft_atoi(rgb[2]);
 	if (color->r < 0 || color->r > 255)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 	if (color->g < 0 || color->g > 255)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 	if (color->b < 0 || color->b > 255)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 }
 
 int	set_map_setting(t_map_info *map_info, char **key_value)
@@ -206,7 +206,7 @@ void	get_map_info(t_map_info *map_info, char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		print_err("opening file");
+		print_err("Opening File");
 
 	get_map_setting(map_info, fd);
 

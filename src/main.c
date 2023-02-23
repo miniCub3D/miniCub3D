@@ -55,8 +55,11 @@ void calculateAndSaveToMap(t_game *game, t_play_info *p_info)
 	{
 		for (int y = 0; y < RESOLUTION_H; y++)
 		{
-			game->buf[y][x] = 0xFFFFFF; 
-			game->buf[RESOLUTION_H - y - 1][x] = 0x000000;
+			// ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff)
+			game->buf[y][x] = ((game->map_info.color_f.r & 0xff) << 16) + ((game->map_info.color_f.g & 0xff) << 8) + ((game->map_info.color_f.b) & 0xff);
+			game->buf[RESOLUTION_H - y - 1][x] = ((game->map_info.color_c.r & 0xff) << 16) + ((game->map_info.color_c.g & 0xff) << 8) + ((game->map_info.color_c.b) & 0xff);
+			// game->buf[y][x] = 0xFFFFFF;
+			// game->buf[RESOLUTION_H - y - 1][x] = 0x000000;
 			// buf[RESOLUTION_H - 1 ~ RESOLUTION_H - RESOLUTION_H][x] 를 칠해줌.
 		}
 	}
