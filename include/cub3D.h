@@ -41,10 +41,10 @@
 # define RESOLUTION_W 1920
 # define RESOLUTION_H 1080
 
-# define WALL_NO 1
-# define WALL_SO 2
-# define WALL_WE 3
-# define WALL_EA 4
+# define WALL_NO 0
+# define WALL_SO 1
+# define WALL_WE 2
+# define WALL_EA 3
 
 typedef struct s_color
 {
@@ -81,6 +81,7 @@ typedef struct s_imgs
 	t_img	wall_so;
 	t_img	wall_we;
 	t_img	wall_ea;
+	t_img	walls[4];
 }		t_imgs;
 
 typedef struct s_play_info
