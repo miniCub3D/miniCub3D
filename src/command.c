@@ -17,7 +17,6 @@ int	key_hook(int key_code, t_game *game)
 	double	old_y = game->play_info.pos_y;
 	double	future_x;
 	double	future_y;
-	printf("%f %f\n", game->play_info.pos_x, game->play_info.pos_y);
 	if (key_code == KEY_W || key_code == KEY_UP)
 	{
 		if (game->map_info.map[(int)(game->play_info.pos_x + game->play_info.dir_x * 0.1)][(int)(game->play_info.pos_y)] != 1)

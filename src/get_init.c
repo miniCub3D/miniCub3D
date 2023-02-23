@@ -32,7 +32,7 @@ void	init_game(t_game *game, int argc, char **argv)
 	game->win = mlx_new_window(game->mlx, RESOLUTION_W, \
 							RESOLUTION_H, "cub3D");
 	game->flame = 0;
-	game->play_info.dir_x = -1;
+	game->play_info.dir_x = 0;
 	game->play_info.dir_y = 0;
 	game->play_info.plane_x = 0;
 	get_imginfo(game, &(game->imgs.walls[WALL_NO]), game->map_info.texture_no);
