@@ -27,17 +27,19 @@ void	init_game(t_game *game, int argc, char **argv)
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != 0)
 		print_err("Wrong Extension\n");
 	init_map_info(&(game->map_info), game, argv);
-	map_validation(game);
+	
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, TILE_SIZE * RESOLUTION_W, \
-							TILE_SIZE * RESOLUTION_H, "cub3D");
+	game->win = mlx_new_window(game->mlx, RESOLUTION_W, \
+							RESOLUTION_H, "cub3D");
 	game->flame = 0;
 	game->play_info.dir_x = 0;
 	game->play_info.dir_y = 0;
-	get_imginfo(game, &(game->imgs.wall_no), game->map_info.texture_no);
-	get_imginfo(game, &(game->imgs.wall_so), game->map_info.texture_so);
-	get_imginfo(game, &(game->imgs.wall_we), game->map_info.texture_we);
-	get_imginfo(game, &(game->imgs.wall_ea), game->map_info.texture_ea);
+	game->play_info.plane_x = 0;
+	get_imginfo(game, &(game->imgs.walls[WALL_NO]), game->map_info.texture_no);
+	get_imginfo(game, &(game->imgs.walls[WALL_SO]), game->map_info.texture_so);
+	get_imginfo(game, &(game->imgs.walls[WALL_WE]), game->map_info.texture_we);
+	get_imginfo(game, &(game->imgs.walls[WALL_EA]), game->map_info.texture_ea);
+	map_validation(game);
 }
 
 void	get_imginfo(t_game *game, t_img *image, char *path)
@@ -51,7 +53,7 @@ void	get_imginfo(t_game *game, t_img *image, char *path)
 		printf("Error opening file %s: %s\n", path, strerror(errno));
 		exit(0);
 	}
-	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel), \
+	image->addr = (int *)mlx_get_data_addr(image->img, &(image->bits_per_pixel), \
 								&(image->line_length), &(image->endian));
 	if (image->addr == NULL)
 	{
@@ -72,16 +74,16 @@ void	set_color(t_color *color, char *str_rgb)
 	while (*(tmp_rgb++))
 		color_cnt++;
 	if (color_cnt != 3)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 	color->r = ft_atoi(rgb[0]);
 	color->g = ft_atoi(rgb[1]);
 	color->b = ft_atoi(rgb[2]);
 	if (color->r < 0 || color->r > 255)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 	if (color->g < 0 || color->g > 255)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 	if (color->b < 0 || color->b > 255)
-		print_err("Error Invalid Color\n");
+		print_err("Invalid Color\n");
 }
 
 int	set_map_setting(t_map_info *map_info, char **key_value)
@@ -166,7 +168,7 @@ void	make_map_rec(t_map_info *map_info, char *one_line)
 		{
 			space_line = malloc(len + 1);
 			space_line[len] = 0;
-			ft_memset(space_line, '*', len);
+			ft_memset(space_line, ' ', len);
 			temp = ft_strjoin(map_info->map[i], space_line);
 			free(map_info->map[i]);
 			free(space_line);
@@ -204,7 +206,7 @@ void	get_map_info(t_map_info *map_info, char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		print_err("opening file");
+		print_err("Opening File");
 
 	get_map_setting(map_info, fd);
 

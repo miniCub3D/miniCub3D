@@ -6,12 +6,12 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 17:34:20 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:59:06 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "../libft/include/ft_printf.h"
 # include "../libft/include/get_next_line.h"
@@ -22,7 +22,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
+# include <math.h>
 
+#define X_EVENT_KEY_PRESS 2
 # define KEY_ESC 53
 # define KEY_A 0
 # define KEY_S 1
@@ -33,16 +35,17 @@
 # define KEY_RIGHT 124
 # define KEY_UP 126
 # define X_EVENT_KEY_EXIT 17
-# define TILE_SIZE 64
+# define TEX_SIZE 64
+# define MINI_SIZE 15
 # define CLBT_SIZE 44
 
 # define RESOLUTION_W 1920
 # define RESOLUTION_H 1080
 
-# define WALL_NO 1
-# define WALL_SO 2
-# define WALL_WE 3
-# define WALL_EA 4
+# define WALL_NO 0
+# define WALL_SO 1
+# define WALL_WE 2
+# define WALL_EA 3
 
 typedef struct s_color
 {
@@ -67,7 +70,7 @@ typedef enum e_img_comp
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -79,14 +82,17 @@ typedef struct s_imgs
 	t_img	wall_so;
 	t_img	wall_we;
 	t_img	wall_ea;
+	t_img	walls[4];
 }		t_imgs;
 
 typedef struct s_play_info
 {
-	double	x;
-	double	y;
+	double	pos_x;
+	double	pos_y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+    double	plane_y;
 }		t_play_info;
 
 typedef struct s_map_info
@@ -106,7 +112,10 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
 	int				flame;
+	int				**buf;
+	int				*data;
 	t_imgs			imgs;
 	t_map_info		map_info;
 	t_play_info		play_info;
