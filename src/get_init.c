@@ -35,11 +35,10 @@ void	init_game(t_game *game, int argc, char **argv)
 	game->play_info.dir_x = -1;
 	game->play_info.dir_y = 0;
 	game->play_info.plane_x = 0;
-	game->play_info.plane_y = 0;
-	get_imginfo(game, &(game->imgs.wall_no), game->map_info.texture_no);
-	get_imginfo(game, &(game->imgs.wall_so), game->map_info.texture_so);
-	get_imginfo(game, &(game->imgs.wall_we), game->map_info.texture_we);
-	get_imginfo(game, &(game->imgs.wall_ea), game->map_info.texture_ea);
+	get_imginfo(game, &(game->imgs.walls[WALL_NO]), game->map_info.texture_no);
+	get_imginfo(game, &(game->imgs.walls[WALL_SO]), game->map_info.texture_so);
+	get_imginfo(game, &(game->imgs.walls[WALL_WE]), game->map_info.texture_we);
+	get_imginfo(game, &(game->imgs.walls[WALL_EA]), game->map_info.texture_ea);
 	map_validation(game);
 }
 

@@ -195,6 +195,7 @@ void calculateAndSaveToMap(t_game *game, t_play_info *p_info)
 			wallX = p_info->pos_x + perpWallDist * rayDirectionX;
 		wallX -= floor(wallX);
 
+
 		// texX는 texture의 x좌표를 나타낸다.
 		// x coordinate on the texture
 		int texX = (int)(wallX * (double)TEX_SIZE);
@@ -202,6 +203,23 @@ void calculateAndSaveToMap(t_game *game, t_play_info *p_info)
 			texX = TEX_SIZE - texX - 1;
 		if (side == 1 && rayDirectionY < 0)
 			texX = TEX_SIZE - texX - 1;
+
+		/*
+		동서남북 지정하기
+		*/
+		int texDir;
+		if (side == 0)
+		{
+			texDir = WALL_SO;
+			if (rayDirectionX > 0)
+				texDir = WALL_NO;
+		}
+		if (side == 1)
+		{
+			texDir = WALL_EA;
+			if (rayDirectionY > 0)
+				texDir = WALL_WE;
+		}
 
 		/*
 			texY를 지정하는 반복문.
@@ -217,7 +235,7 @@ void calculateAndSaveToMap(t_game *game, t_play_info *p_info)
 			// Cast the texture coordinate to integer, and mask with (TEX_SIZE - 1) in case of overflow
 			int texY = (int)texPos & (TEX_SIZE - 1);
 			texPos += step;
-			int color = game->imgs.wall_no.addr[64 * texY + texX];
+			int color = game->imgs.walls[texDir].addr[64 * texY + texX];
 			// 광선이 벽의 y면에 부딪힌 경우(side == 1).
 			// 조명표현을 위해 색상을 더 검게 만든다.
 			// 이진수를 2로 나눔으로써 RGB값을 반감시킨다.
