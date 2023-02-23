@@ -49,13 +49,25 @@ void	check_tile2(t_game *game, t_map_info *map_info, int i)
 void	set_player_direction(t_play_info *play_info, char direction)
 {
 	if (direction == 'N')
-		play_info->dir_y = 1;
-	if (direction == 'S')
-		play_info->dir_y = -1;
-	if (direction == 'E')
-		play_info->dir_x = 1;
-	if (direction == 'W')
+	{
 		play_info->dir_x = -1;
+		play_info->plane_y = 0.66;
+	}
+	if (direction == 'S')
+	{
+		play_info->dir_x = 1;
+		play_info->plane_y = -0.66;
+	}
+	if (direction == 'E')
+	{
+		play_info->dir_y = 1;
+		play_info->plane_x = 0.66;
+	}
+	if (direction == 'W')
+	{
+		play_info->dir_y = -1;
+		play_info->plane_x = -0.66;
+	}
 }
 
 void	check_only01_unique_player(t_game *game)
@@ -74,8 +86,8 @@ void	check_only01_unique_player(t_game *game)
 		{
 			if (game->map_info.map[r][c] == 'N' || game->map_info.map[r][c] == 'E' || game->map_info.map[r][c] == 'W' || game->map_info.map[r][c] == 'S')
 			{
-				game->play_info.x = r;
-				game->play_info.y = c;
+				game->play_info.pos_x = r;
+				game->play_info.pos_y = c;
 				set_player_direction(&(game->play_info), game->map_info.map[r][c]);
 				player_cnt++;
 				continue ;

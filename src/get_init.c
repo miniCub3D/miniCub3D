@@ -27,17 +27,20 @@ void	init_game(t_game *game, int argc, char **argv)
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != 0)
 		print_err("Wrong Extension\n");
 	init_map_info(&(game->map_info), game, argv);
-	map_validation(game);
+	
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, RESOLUTION_W, \
 							RESOLUTION_H, "cub3D");
 	game->flame = 0;
 	game->play_info.dir_x = -1;
 	game->play_info.dir_y = 0;
+	game->play_info.plane_x = 0;
+	game->play_info.plane_y = 0;
 	get_imginfo(game, &(game->imgs.wall_no), game->map_info.texture_no);
 	get_imginfo(game, &(game->imgs.wall_so), game->map_info.texture_so);
 	get_imginfo(game, &(game->imgs.wall_we), game->map_info.texture_we);
 	get_imginfo(game, &(game->imgs.wall_ea), game->map_info.texture_ea);
+	map_validation(game);
 }
 
 void	get_imginfo(t_game *game, t_img *image, char *path)

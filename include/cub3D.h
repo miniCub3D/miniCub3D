@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 17:34:20 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:37:26 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define KEY_RIGHT 124
 # define KEY_UP 126
 # define X_EVENT_KEY_EXIT 17
-# define TILE_SIZE 64
+# define TEX_SIZE 64
 # define CLBT_SIZE 44
 
 # define RESOLUTION_W 1920
@@ -83,10 +83,12 @@ typedef struct s_imgs
 
 typedef struct s_play_info
 {
-	double	x;
-	double	y;
+	double	pos_x;
+	double	pos_y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+    double	plane_y;
 }		t_play_info;
 
 typedef struct s_map_info
@@ -106,15 +108,13 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
 	int				flame;
+	int				**buf;
+	int				*data;
 	t_imgs			imgs;
 	t_map_info		map_info;
 	t_play_info		play_info;
-	int	**buf;
-	void	*img;
-	int		*data;
-	double planeX;
-    double planeY;
 }		t_game;
 
 // get_init.c
