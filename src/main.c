@@ -32,12 +32,11 @@ void    minimap(t_game *game)
                 minimapDraw(game, i * MINI_SIZE, j * MINI_SIZE, 0x7CB342);
             else if (game->map_info.map[i][j] == '0')
                 minimapDraw(game, i * MINI_SIZE, j * MINI_SIZE, 0xDCEDC8);
-            else if (game->map_info.map[i][j] == 'N' || game->map_info.map[i][j] == 'S' || game->map_info.map[i][j] == 'E' || game->map_info.map[i][j] == 'W')
-                minimapDraw(game, i * MINI_SIZE, j * MINI_SIZE, 0x4DD0E1);
             j++;
         }
         i++;
     }
+    minimapDraw(game,  game->play_info.pos_x * MINI_SIZE - MINI_SIZE / 2, game->play_info.pos_y * MINI_SIZE - MINI_SIZE / 2, 0x4DD0E1);
 }
 
 void imageDraw(t_game *info)
