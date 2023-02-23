@@ -51,7 +51,7 @@ void	get_imginfo(t_game *game, t_img *image, char *path)
 		printf("Error opening file %s: %s\n", path, strerror(errno));
 		exit(0);
 	}
-	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel), \
+	image->addr = (int *)mlx_get_data_addr(image->img, &(image->bits_per_pixel), \
 								&(image->line_length), &(image->endian));
 	if (image->addr == NULL)
 	{
