@@ -88,6 +88,7 @@ void	check_only01_unique_player(t_game *game)
 				game->play_info.pos_x = r + 0.5;
 				game->play_info.pos_y = c + 0.5;
 				set_player_direction(&(game->play_info), game->map_info.map[r][c]);
+				game->map_info.map[r][c] = '0';
 				player_cnt++;
 				continue ;
 			}

@@ -13,19 +13,44 @@ int	key_hook(int key_code, t_game *game)
 	// move_up = -game->map_info.width;
 	if (key_code == KEY_ESC)
 		exit_game(game);
+	double	old_x = game->play_info.pos_x;
+	double	old_y = game->play_info.pos_y;
+	double	future_x;
+	double	future_y;
+	printf("%f %f\n", game->play_info.pos_x, game->play_info.pos_y);
 	if (key_code == KEY_W || key_code == KEY_UP)
 	{
 		if (game->map_info.map[(int)(game->play_info.pos_x + game->play_info.dir_x * 0.1)][(int)(game->play_info.pos_y)] != 1)
+		{
+			future_x = game->play_info.pos_x + game->play_info.dir_x * 0.2;
 			game->play_info.pos_x += game->play_info.dir_x * 0.1;
+		}
 		if (game->map_info.map[(int)(game->play_info.pos_x)][(int)(game->play_info.pos_y + game->play_info.dir_y * 0.1)] != 1)
+		{
+			future_y = game->play_info.pos_y + game->play_info.dir_y * 0.2;
 			game->play_info.pos_y += game->play_info.dir_y * 0.1;
+		}
 	}
 	if (key_code == KEY_S || key_code == KEY_DOWN)
 	{
 		if (game->map_info.map[(int)(game->play_info.pos_x - game->play_info.dir_x * 0.1)][(int)(game->play_info.pos_y)] != 1)
+		{
+			future_x = game->play_info.pos_x - game->play_info.dir_x * 0.2;
 			game->play_info.pos_x -= game->play_info.dir_x * 0.1;
+		}
 		if (game->map_info.map[(int)(game->play_info.pos_x)][(int)(game->play_info.pos_y - game->play_info.dir_y * 0.1)] != 1)
+		{
+			future_y = game->play_info.pos_y - game->play_info.dir_y * 0.2;
 			game->play_info.pos_y -= game->play_info.dir_y * 0.1;
+		}
+	}
+	if (key_code == KEY_W || key_code == KEY_UP || key_code == KEY_S || key_code == KEY_DOWN)
+	{
+		if (game->map_info.map[(int)future_x][(int)future_y] != '0')
+		{
+			game->play_info.pos_x = old_x;
+			game->play_info.pos_y = old_y;
+		}
 	}
 	if (key_code == KEY_A || key_code == KEY_LEFT)
 	{
