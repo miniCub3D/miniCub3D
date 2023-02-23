@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/24 04:37:26 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:56:17 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
+# include <math.h>
 
+#define X_EVENT_KEY_PRESS 2
 # define KEY_ESC 53
 # define KEY_A 0
 # define KEY_S 1

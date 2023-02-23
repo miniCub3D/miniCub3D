@@ -1,5 +1,4 @@
 #include "../include/cub3D.h"
-#include <math.h>
 
 void imageDraw(t_game *info)
 {
@@ -259,7 +258,7 @@ int	main(int argc, char **argv)
 	game.data = (int *)mlx_get_data_addr(game.img, &bpp, &size_l, &endian);
 
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &exit_game, &game);
-	mlx_key_hook(game.win, key_hook, &game);
+	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &key_hook, &game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
