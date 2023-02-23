@@ -6,12 +6,12 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/24 04:56:17 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:59:06 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "../libft/include/ft_printf.h"
 # include "../libft/include/get_next_line.h"
