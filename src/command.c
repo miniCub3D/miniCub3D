@@ -13,10 +13,6 @@ int	key_hook(int key_code, t_game *game)
 	// move_up = -game->map_info.width;
 	if (key_code == KEY_ESC)
 		exit_game(game);
-	// if (key_code == KEY_A || key_code == KEY_LEFT)
-	// 	move_player(game, move_left);
-	// if (key_code == KEY_D || key_code == KEY_RIGHT)
-	// 	move_player(game, move_right);
 	if (key_code == KEY_W || key_code == KEY_UP)
 	{
 		if (game->map_info.map[(int)(game->play_info.pos_x + game->play_info.dir_x * 0.1)][(int)(game->play_info.pos_y)] != 1)
@@ -30,6 +26,24 @@ int	key_hook(int key_code, t_game *game)
 			game->play_info.pos_x -= game->play_info.dir_x * 0.1;
 		if (game->map_info.map[(int)(game->play_info.pos_x)][(int)(game->play_info.pos_y - game->play_info.dir_y * 0.1)] != 1)
 			game->play_info.pos_y -= game->play_info.dir_y * 0.1;
+	}
+	if (key_code == KEY_A || key_code == KEY_LEFT)
+	{
+		double oldDirectionX =  game->play_info.dir_x;
+        game->play_info.dir_x =  game->play_info.dir_x * cos(0.05) - game->play_info.dir_y * sin(0.05);
+        game->play_info.dir_y = oldDirectionX * sin(0.05) + game->play_info.dir_y * cos(0.05);
+        double oldPlaneX = game->play_info.plane_x;
+        game->play_info.plane_x = game->play_info.plane_x * cos(0.05) - game->play_info.plane_y * sin(0.05);
+        game->play_info.plane_y = oldPlaneX * sin(0.05) + game->play_info.plane_y * cos(0.05);
+	}
+	if (key_code == KEY_D || key_code == KEY_RIGHT)
+	{
+		double oldDirectionX =  game->play_info.dir_x;
+        game->play_info.dir_x =  game->play_info.dir_x * cos(-0.05) - game->play_info.dir_y * sin(-0.05);
+        game->play_info.dir_y = oldDirectionX * sin(-0.05) + game->play_info.dir_y * cos(-0.05);
+        double oldPlaneX = game->play_info.plane_x;
+        game->play_info.plane_x = game->play_info.plane_x * cos(-0.05) - game->play_info.plane_y * sin(-0.05);
+        game->play_info.plane_y = oldPlaneX * sin(-0.05) + game->play_info.plane_y * cos(-0.05);
 	}
 	return (0);
 }
