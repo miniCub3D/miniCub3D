@@ -33,10 +33,10 @@ all		:	$(NAME)
 $(NAME)	:	$(OBJS)
 	make -C $(LIBFT)
 	make -C $(MLX)
-	$(CC) $(CFLAGS) $(CLIB) -I $(INC) $(OBJS) -o $(NAME) -fsanitize=address
+	@$(CC) $(CFLAGS) $(CLIB) -I $(INC) $(OBJS) -o $(NAME) -fsanitize=address
 
 %.o	:%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 bonus :
 	make WITH_BONUS=1

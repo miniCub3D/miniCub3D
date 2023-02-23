@@ -6,16 +6,16 @@
 #    By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 18:53:42 by seunghso          #+#    #+#              #
-#    Updated: 2022/07/27 18:42:33 by seunghso         ###   ########.fr        #
+#    Updated: 2023/02/22 17:38:41 by seunghso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_seunghso.a
 
-CC 		= cc
+CC 		= @cc
 CFLAGES = -Wall -Werror -Wextra
 
-AR 		= ar
+AR 		= @ar
 ARFLAGS = -rcs
 
 INCLUDES_DIR 	= include
