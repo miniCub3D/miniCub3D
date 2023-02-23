@@ -29,20 +29,16 @@ void calculateAndSaveToMap(t_game *info)
     {
         // cameraX 는 for문의 x값이 카메라 평면 상에 있을 때의 x좌표.
         double cameraX = (2 * x / (double)(screenWidth)) - 1;
-		printf("--- x : %d\n cameraX %f\n",x,cameraX);
         // cameraPlaneX == 0; cameraPlaneY == 0.66; dirVecX = -1; dirVecY = 0;
         // 광선의 방향은 방향벡터 + 카메라평면 * 배수.
         double rayDirectionX = info->play_info.dir_x + info->planeX * cameraX;
-		printf("info->planeX %f cameraX %f\n",info->planeX ,cameraX);
         double rayDirectionY = info->play_info.dir_y + info->planeY * cameraX;
-		printf("rayDirection : %f %f\n",rayDirectionX,rayDirectionY);
         /*
             DDAgorithm
         */
         // 현재 player가 위치한 맵 내 위치.(which box of the map)
         int mapX = (int)(info->play_info.x);
         int mapY = (int)(info->play_info.y);
-		printf("mapXY : %d %d\n",mapX, mapY);
         
 		// 현재 위치에서 다음 x사이드 또는 y사이드까지의 거리.
         // 이를 이하 '첫 번째 x면 및 y면'이라고 부를 것.
@@ -58,7 +54,6 @@ void calculateAndSaveToMap(t_game *info)
         // deltaDistY는 첫 번째 y면에서 그 다음 y면까지의 광선의 이동거리.
         // 이 경우 y는 1만큼 이동.
         double deltaDistY = fabs(1 / rayDirectionY);
-		printf("deltaDist : %f %f\n",deltaDistX,deltaDistY);
 
         // 광선의 이동거리를 계산할 때 사용할 변수.
         double perpWallDist;
@@ -112,8 +107,6 @@ void calculateAndSaveToMap(t_game *info)
             stepY = 1;
             sideDistY = (mapY + 1.0 - info->play_info.y) * deltaDistY;
         }
-		printf("sideDist : %f %f\n",sideDistX ,sideDistY);
-		printf("stepXY : %d %d\n",stepX, stepY);
 
         /*
             DDAgorithm 세팅을 완료했고, 이제 그것을 시작하는 부분.
@@ -141,7 +134,6 @@ void calculateAndSaveToMap(t_game *info)
             if (info->map_info.map[mapX][mapY] == '1')
                 hit = 1;
         }
-		printf("mapXY : %d %d\n",mapX, mapY);
         /*
             벽을 만나 DDAgorithm이 완료됨.
             이제 광선의 시작점에서 벽까지의 이동거리를 계산할 차례임.
@@ -173,7 +165,6 @@ void calculateAndSaveToMap(t_game *info)
 
         // 스크린에 그릴 line의 높이를 계산.
         int lineHeight = (int)(screenHeight / perpWallDist);
-		printf("lineHeight %d / screenHeight %d / perpWallDist %f\n",lineHeight, screenHeight ,perpWallDist);
 
 		/*
             이제 계산한 거리를 가지고 화면에 그려야 하는 선의 높이를 구할 수 있다.
@@ -190,7 +181,6 @@ void calculateAndSaveToMap(t_game *info)
         int drawEnd = (lineHeight / 2) + (screenHeight / 2);
         if (drawEnd >= screenHeight)
             drawEnd = screenHeight - 1;
-		printf("drawStart %d, drawEnd %d\n", drawStart,drawEnd);
         // texturing calculations
         // 1을 빼주는 이유는 0번째 텍스쳐도 0, 벽이 없어도 0이기 때문.
         // 1을 빼지 않는다면 어떻게 될까?
@@ -208,7 +198,6 @@ void calculateAndSaveToMap(t_game *info)
         else
             wallX = info->play_info.x + perpWallDist * rayDirectionX;
         wallX -= floor(wallX);
-		printf("side : %d\n",side);
 
         // texX는 texture의 x좌표를 나타낸다.
         // x coordinate on the texture
@@ -233,7 +222,6 @@ void calculateAndSaveToMap(t_game *info)
         {
             // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
             int texY = (int)texPos & (texHeight - 1);
-			printf("texX texY : %d %d\n",texX, texY);
             texPos += step;
             int color = info->imgs.wall_no.addr[64 * texY + texX];
             // 광선이 벽의 y면에 부딪힌 경우(side == 1).
