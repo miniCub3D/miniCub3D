@@ -1,11 +1,51 @@
 #include "../include/cub3D.h"
 
+void    minimapDraw(t_game *game, int x, int y, int color)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < MINI_SIZE)
+    {
+        j = 0;
+        while (j < MINI_SIZE)
+        {
+            game->data[((x + i)* RESOLUTION_W) + y + j] = color;
+            j++;
+        }
+        i++;
+    }
+}
+void    minimap(t_game *game)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < game->map_info.height)
+    {
+        j = 0;
+        while (j < game->map_info.width)
+        {
+            if (game->map_info.map[i][j] == '1')
+                minimapDraw(game, i * MINI_SIZE, j * MINI_SIZE, 0x7CB342);
+            else if (game->map_info.map[i][j] == '0')
+                minimapDraw(game, i * MINI_SIZE, j * MINI_SIZE, 0xDCEDC8);
+            else if (game->map_info.map[i][j] == 'N' || game->map_info.map[i][j] == 'S' || game->map_info.map[i][j] == 'E' || game->map_info.map[i][j] == 'W')
+                minimapDraw(game, i * MINI_SIZE, j * MINI_SIZE, 0x4DD0E1);
+            j++;
+        }
+        i++;
+    }
+}
+
 void imageDraw(t_game *info)
 {
 	for (int y = 0; y < RESOLUTION_H; y++)
 		for (int x = 0; x < RESOLUTION_W; x++)
 			info->data[y * RESOLUTION_W + x] = info->buf[y][x];
-
+    minimap(info);
 	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 }
 
@@ -210,15 +250,15 @@ void calculateAndSaveToMap(t_game *game, t_play_info *p_info)
 		int texDir;
 		if (side == 0)
 		{
-			texDir = WALL_SO;
+			texDir = WALL_NO;
 			if (rayDirectionX > 0)
-				texDir = WALL_NO;
+				texDir = WALL_SO;
 		}
 		if (side == 1)
 		{
-			texDir = WALL_EA;
+			texDir = WALL_WE;
 			if (rayDirectionY > 0)
-				texDir = WALL_WE;
+				texDir = WALL_EA;
 		}
 
 		/*
