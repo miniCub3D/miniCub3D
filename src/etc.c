@@ -2,12 +2,9 @@
 
 void	clear_game(t_game *game)
 {
-	int	score;
 
-	score = game->play_info.score - game->play_info.move_cnt;
 	printf("\n################\n\n");
 	printf("GAME CLEAR!!\n\n");
-	printf("Your Score: %d\n", score);
 	printf("\n################\n\n");
 	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
