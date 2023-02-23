@@ -6,7 +6,7 @@
 /*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/22 17:34:20 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:25:43 by seunghso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
+# include <math.h>
 
 # define KEY_ESC 53
 # define KEY_A 0
@@ -33,11 +34,11 @@
 # define KEY_RIGHT 124
 # define KEY_UP 126
 # define X_EVENT_KEY_EXIT 17
-# define TILE_SIZE 64
+# define TEXTURE_SIZE 64
 # define CLBT_SIZE 44
 
-# define RESOLUTION_W 1920
-# define RESOLUTION_H 1080
+# define RESOLUTION_W 640
+# define RESOLUTION_H 480
 
 # define WALL_NO 1
 # define WALL_SO 2
@@ -64,13 +65,25 @@ typedef enum e_img_comp
 	PATROL2
 }	t_img_comp;
 
-typedef struct s_img
+// typedef struct s_img
+// {
+// 	void	*img;
+// 	int		*data;
+// 	char	*addr;
+// 	int		bits_per_pixel;
+// 	int		line_length;
+// 	int		endian;
+// }		t_img;
+
+typedef struct    s_img
 {
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		*data;
+	int		size_l;
+	int		bpp;
 	int		endian;
+	int		img_width;
+	int		img_height;
 }		t_img;
 
 typedef struct s_imgs
@@ -83,10 +96,15 @@ typedef struct s_imgs
 
 typedef struct s_play_info
 {
-	double	x;
-	double	y;
+	double	pos_x;
+	double	pos_y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
+
 }		t_play_info;
 
 typedef struct s_map_info
@@ -107,7 +125,10 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	int				flame;
+	int				buf[RESOLUTION_W][RESOLUTION_H];
+	int				**texture;
 	t_imgs			imgs;
+	t_img			img;
 	t_map_info		map_info;
 	t_play_info		play_info;
 }		t_game;
