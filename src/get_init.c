@@ -26,38 +26,48 @@ void	init_game(t_game *game, int argc, char **argv)
 		print_err("Few or Too Many Arguments\n");
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != 0)
 		print_err("Wrong Extension\n");
-	init_map_info(&(game->map_info), game, argv);
-	map_validation(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, RESOLUTION_W, \
 							RESOLUTION_H, "cub3D");
+
+	game->img.img = mlx_new_image(game->mlx, RESOLUTION_W, RESOLUTION_H);
+	game->img.data = (int *)mlx_get_data_addr(game->img.img, &game->img.bpp, &(game->img.size_l), &(game->img.endian));
 	game->flame = 0;
 	game->play_info.dir_x = -1;
 	game->play_info.dir_y = 0;
+	game->play_info.plane_x = 0;
+	game->play_info.plane_y = 0;
+	game->play_info.move_speed = 0.05;
+	game->play_info.rot_speed = 0.05;
 	get_imginfo(game, &(game->imgs.wall_no), game->map_info.texture_no);
 	get_imginfo(game, &(game->imgs.wall_so), game->map_info.texture_so);
 	get_imginfo(game, &(game->imgs.wall_we), game->map_info.texture_we);
 	get_imginfo(game, &(game->imgs.wall_ea), game->map_info.texture_ea);
+	init_map_info(&(game->map_info), game, argv);
+	map_validation(game);
 }
 
 void	get_imginfo(t_game *game, t_img *image, char *path)
 {
-	int		tmp;
+	(void)game;
+	(void)image;
+	(void)path;
+	// int		tmp;
 
-	image->img = NULL;
-	image->img = mlx_xpm_file_to_image(game->mlx, path, &tmp, &tmp);
-	if (image->img == NULL)
-	{
-		printf("Error opening file %s: %s\n", path, strerror(errno));
-		exit(0);
-	}
-	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel), \
-								&(image->line_length), &(image->endian));
-	if (image->addr == NULL)
-	{
-		perror("Error");
-		exit(0);
-	}
+	// image->img = NULL;
+	// image->img = mlx_xpm_file_to_image(game->mlx, path, &tmp, &tmp);
+	// if (image->img == NULL)
+	// {
+	// 	printf("Error opening file %s: %s\n", path, strerror(errno));
+	// 	exit(0);
+	// }
+	// image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel), \
+	// 							&(image->line_length), &(image->endian));
+	// if (image->addr == NULL)
+	// {
+	// 	perror("Error");
+	// 	exit(0);
+	// }
 }
 
 void	set_color(t_color *color, char *str_rgb)

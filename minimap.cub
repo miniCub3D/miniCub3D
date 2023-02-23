@@ -1,3 +1,4 @@
+
 NO ./textures/wall_n.xpm
 SO ./textures/wall_s.xpm
 WE ./textures/wall_w.xpm
@@ -6,7 +7,7 @@ EA ./textures/wall_e.xpm
 F 220,100,0
 C 225,30,0
 
-      
+
 1111111111
 1000001001
 1000001001
