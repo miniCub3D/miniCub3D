@@ -36,6 +36,7 @@
 # define KEY_UP 126
 # define X_EVENT_KEY_EXIT 17
 # define TEX_SIZE 64
+# define MINI_SIZE 15
 # define CLBT_SIZE 44
 
 # define RESOLUTION_W 1920
