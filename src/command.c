@@ -45,7 +45,27 @@ int	key_hook(int key_code, t_game *game)
 	}
 	if (key_code == KEY_W || key_code == KEY_UP || key_code == KEY_S || key_code == KEY_DOWN)
 	{
-		if (game->map_info.map[(int)future_x][(int)future_y] != '0')
+		// if (game->map_info.map[(int)future_x][(int)future_y] != '0')
+		// {
+		// 	game->play_info.pos_x = old_x;
+		// 	game->play_info.pos_y = old_y;
+		// }
+		if (game->map_info.map[(int)(game->play_info.pos_x+0.2)][(int)game->play_info.pos_y] != '0')
+		{
+			game->play_info.pos_x = old_x;
+			game->play_info.pos_y = old_y;
+		}
+		if (game->map_info.map[(int)game->play_info.pos_x][(int)(game->play_info.pos_y+0.2)] != '0')
+		{
+			game->play_info.pos_x = old_x;
+			game->play_info.pos_y = old_y;
+		}
+		if (game->map_info.map[(int)(game->play_info.pos_x-0.2)][(int)game->play_info.pos_y] != '0')
+		{
+			game->play_info.pos_x = old_x;
+			game->play_info.pos_y = old_y;
+		}
+		if (game->map_info.map[(int)game->play_info.pos_x][(int)(game->play_info.pos_y-0.2)] != '0')
 		{
 			game->play_info.pos_x = old_x;
 			game->play_info.pos_y = old_y;
