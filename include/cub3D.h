@@ -110,6 +110,11 @@ typedef struct s_game
 	t_imgs			imgs;
 	t_map_info		map_info;
 	t_play_info		play_info;
+	int	**buf;
+	void	*img;
+	int		*data;
+	double planeX;
+    double planeY;
 }		t_game;
 
 // get_init.c
