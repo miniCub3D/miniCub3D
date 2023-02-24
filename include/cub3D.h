@@ -100,6 +100,7 @@ typedef struct s_map_info
 	int		width;
 	int		height;
 	char	**map;
+	int		**map_visited;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;
@@ -120,6 +121,20 @@ typedef struct s_game
 	t_map_info		map_info;
 	t_play_info		play_info;
 }		t_game;
+
+typedef struct s_node {
+	int				x;
+	int				y;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
+
+typedef struct s_deque {
+	int		cnt;
+	t_node	*head;
+	t_node	*tail;
+}	t_deque;
+
 
 // get_init.c
 void	init_map_info(t_map_info *map_info, t_game *game, char **argv);
@@ -146,5 +161,19 @@ void	put_specified_image(t_game *game, t_img_comp img, int loc);
 void	clear_game(t_game *game);
 int		exit_game(t_game *game);
 void	print_err(char *str);
+
+// check_map_surrounded_wall.c
+void	check_map_surrounded_wall(t_game *game);
+
+// deque_utils1.cs
+t_node	*make_new_node(int x, int y);
+void	append_head(t_deque *deque, t_node *new_node);
+void	append_tail(t_deque *deque, t_node *new_node);
+void	init_queue(t_deque *deque);
+
+// deque_utils2.cs
+t_node	*pop_tail(t_deque *deque);
+void	set_event_pos_dir(int *original_pos, int *event_pos, int flag);
+int		BFS_map(t_game *game, t_deque *deque);
 
 #endif

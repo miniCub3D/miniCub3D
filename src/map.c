@@ -103,6 +103,7 @@ void	check_only01_unique_player(t_game *game)
 void	map_validation(t_game *game)
 {
 	check_only01_unique_player(game);
+	check_map_surrounded_wall(game);
 }
 
 void	render_map(t_game *game)
