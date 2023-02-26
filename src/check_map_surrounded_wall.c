@@ -39,28 +39,10 @@ void	check_map_surrounded_wall(t_game *game)
 			{
 				append_head(&deque, make_new_node(x, y));
 				game->map_info.map_visited[y][x] = 1;
-				if (BFS_map(game, &deque)) // 나중에 바꾸겠다 : hyujang
-					exit(1); // 나중에 바꾸겠다 : hyujang
+				BFS_map(game, &deque);
 			}
 			x++;
 		}
-		printf("\n");
 		y++;
-	}
-
-	int	i;
-	int j;
-
-	i = 0;
-	while (i < game->map_info.height)
-	{
-		j = 0;
-		while (j < game->map_info.width)
-		{
-			printf("%d", game->map_info.map_visited[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
 	}
 }

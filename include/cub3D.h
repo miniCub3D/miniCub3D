@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghso <seunghso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyujang <hyujang@42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 21:19:00 by seunghso          #+#    #+#             */
-/*   Updated: 2023/02/24 04:59:06 by seunghso         ###   ########.fr       */
+/*   Updated: 2023/02/27 00:07:09 by hyujang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,6 @@ void	init_queue(t_deque *deque);
 // deque_utils2.cs
 t_node	*pop_tail(t_deque *deque);
 void	set_event_pos_dir(int *original_pos, int *event_pos, int flag);
-int		BFS_map(t_game *game, t_deque *deque);
+void	BFS_map(t_game *game, t_deque *deque);
 
 #endif
