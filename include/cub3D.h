@@ -135,6 +135,56 @@ typedef struct s_deque {
 	t_node	*tail;
 }	t_deque;
 
+typedef struct s_raydata {
+	double	cam_x;
+	double	ray_x;
+	double	ray_y;
+	int		map_x;
+	int		map_y;
+	double	side_x;
+	double	side_y;
+	double	delta_x;
+	double	delta_y;
+	double	perp_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	int		tex_dir;
+	double	step;
+	double	tex_pos;
+	int		color;
+}	t_raydata;
+
+
+// main.c
+void	minimap_draw(t_game *game, int x, int y, int color);
+void	minimap(t_game *game);
+void	image_draw(t_game *info);
+
+// calculate_save_map1.c
+void	set_step_x_y(t_raydata *rd, t_play_info *p_info);
+void	hit_check(t_raydata *rd, t_game *game);
+void	rd_init(t_raydata *rd, t_game *game, t_play_info *p_info, int x);
+void	set_perp_dist(t_raydata *rd, t_play_info *p_info);
+void	set_start_end(t_raydata *rd);
+
+// calculate_save_map2.c
+void	set_tex(t_raydata *rd, t_play_info *p_info);
+void	set_news(t_raydata *rd);
+void	draw_y(t_raydata *rd, t_game *game, int x);
+void	calculate_save_map(t_game *game, t_play_info *p_info);
+
+// minimap.c
+void	minimap_draw(t_game *game, int x, int y, int color);
+void	minimap(t_game *game);
+void	image_draw(t_game *info);
 
 // get_init.c
 void	init_map_info(t_map_info *map_info, t_game *game, char **argv);
@@ -190,4 +240,6 @@ void	set_original_pos_pop(t_deque *deque, int *original_pos);
 void	set_event_pos_dir(int *original_pos, int *event_pos, int flag);
 void	bfs_map(t_game *game, t_deque *deque);
 
+// paint_half.c
+void	paint_half(t_game *game);
 #endif
