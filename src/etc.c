@@ -2,7 +2,6 @@
 
 void	clear_game(t_game *game)
 {
-
 	printf("\n################\n\n");
 	printf("GAME CLEAR!!\n\n");
 	printf("\n################\n\n");

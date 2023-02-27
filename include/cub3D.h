@@ -139,15 +139,23 @@ typedef struct s_deque {
 // get_init.c
 void	init_map_info(t_map_info *map_info, t_game *game, char **argv);
 void	init_game(t_game *game, int argc, char **argv);
-void	get_map_info(t_map_info *map_info, char *path);
 void	get_imginfo(t_game *game, t_img *image, char *path);
+void	set_color(t_color *color, char *str_rgb);
+int		set_map_setting(t_map_info *map_info, char **key_value);
+
+// get_init2.c
+int		get_map_setting(t_map_info *map_info, int fd);
+char	*get_new_map(t_map_info *map_info, char *one_line, char *buff);
+void	make_map_rec(t_map_info *map_info, char *one_line);
+int		check_space(char *one_line, char *buff);
+void	get_map_info(t_map_info *map_info, char *path);
 
 // map.c
-void	check_tile1(t_game *game, t_map_info *map_info, int i);
-void	check_tile2(t_game *game, t_map_info *map_info, int i);
+void	set_direction(t_play_info *play_info, char direction);
+int		check_news(char c);
+void	check_not_valid_data(char c);
+void	check_only01_unique_player(t_game *game);
 void	map_validation(t_game *game);
-void	render_map(t_game *game);
-void	render_number(t_game *game);
 
 // command.c
 int		key_hook(int keycode, t_game *game);
@@ -172,8 +180,8 @@ void	append_tail(t_deque *deque, t_node *new_node);
 void	init_queue(t_deque *deque);
 
 // deque_utils2.cs
-t_node	*pop_tail(t_deque *deque);
+void	set_original_pos_pop(t_deque *deque, int *original_pos);
 void	set_event_pos_dir(int *original_pos, int *event_pos, int flag);
-void	BFS_map(t_game *game, t_deque *deque);
+void	bfs_map(t_game *game, t_deque *deque);
 
 #endif
