@@ -157,9 +157,15 @@ void	check_not_valid_data(char c);
 void	check_only01_unique_player(t_game *game);
 void	map_validation(t_game *game);
 
-// command.c
-int		key_hook(int keycode, t_game *game);
-void	move_player(t_game *game, int loc_change);
+// command1.c
+void	restore_position(t_game *game, double old_x, double old_y);
+int		key_hook(int key_code, t_game *game);
+
+// command2.c
+void	push_up(t_game *game, double old_x, double old_y);
+void	push_down(t_game *game, double old_x, double old_y);
+void	push_left(t_game *game);
+void	push_right(t_game *game);
 
 // put_img.c
 void	put_img(t_game *game, t_img image, int loc, int img_size);
