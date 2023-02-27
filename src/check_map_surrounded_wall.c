@@ -10,7 +10,6 @@ void make_visited_map(t_game *game)
 	while (i < game->map_info.height)
 	{
 		game->map_info.map_visited[i] = (int *)malloc(sizeof(int) * (game->map_info.width));
-		game->map_info.map_visited[i][game->map_info.width] = 0;
 		j = 0;
 		while (j < game->map_info.width)
 		{
