@@ -24,7 +24,7 @@
 # include <stdio.h>
 # include <math.h>
 
-#define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_PRESS 2
 # define KEY_ESC 53
 # define KEY_A 0
 # define KEY_S 1
@@ -92,7 +92,7 @@ typedef struct s_play_info
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
-    double	plane_y;
+	double	plane_y;
 }		t_play_info;
 
 typedef struct s_map_info
@@ -161,7 +161,6 @@ typedef struct s_raydata {
 	double	tex_pos;
 	int		color;
 }	t_raydata;
-
 
 // main.c
 void	minimap_draw(t_game *game, int x, int y, int color);
