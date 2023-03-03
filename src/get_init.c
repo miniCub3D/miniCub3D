@@ -69,6 +69,9 @@ void	set_color(t_color *color, char *str_rgb)
 	color->r = ft_atoi(rgb[0]);
 	color->g = ft_atoi(rgb[1]);
 	color->b = ft_atoi(rgb[2]);
+	free(rgb[0]);
+	free(rgb[1]);
+	free(rgb[2]);
 	if (color->r < 0 || color->r > 255)
 		print_err("Invalid Color\n");
 	if (color->g < 0 || color->g > 255)

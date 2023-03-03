@@ -23,6 +23,8 @@ int	get_map_setting(t_map_info *map_info, int fd)
 			key_value[1][len_value - 1] = '\0';
 		if (!set_map_setting(map_info, key_value))
 			line_cnt++;
+		free(key_value[0]);
+		free(key_value[1]);
 		free(key_value);
 		free(line);
 	}
@@ -91,6 +93,7 @@ int	check_space(char *one_line, char *buff)
 			return (0);
 		i++;
 	}
+	free(buff);
 	return (1);
 }
 
