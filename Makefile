@@ -3,7 +3,7 @@ NAME	=	cub3D
 SRCS_DIR_M	=	src/
 SRCS_BASE_M	=	main.c etc.c map.c put_img.c \
 				command1.c command2.c \
-				get_init.c get_init2.c \
+				get_init.c get_init2.c get_init3.c \
 				check_map_surrounded_wall.c deque_utils1.c deque_utils2.c \
 				paint_half.c \
 				calculate_save_map1.c calculate_save_map2.c minimap.c

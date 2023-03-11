@@ -13,7 +13,7 @@ int	get_map_setting(t_map_info *map_info, int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (line[0] == '\n')
+		if (is_only_new_line(line) == 1)
 			continue ;
 		key_value = ft_split(line, ' ');
 		if (*(key_value + 1) == NULL)
@@ -23,10 +23,7 @@ int	get_map_setting(t_map_info *map_info, int fd)
 			key_value[1][len_value - 1] = '\0';
 		if (!set_map_setting(map_info, key_value))
 			line_cnt++;
-		free(key_value[0]);
-		free(key_value[1]);
-		free(key_value);
-		free(line);
+		free_map_setting_var(key_value, line);
 	}
 	return (0);
 }

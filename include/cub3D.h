@@ -199,6 +199,10 @@ void	make_map_rec(t_map_info *map_info, char *one_line);
 int		check_space(char *one_line, char *buff);
 void	get_map_info(t_map_info *map_info, char *path);
 
+// get_init3.c
+int		is_only_new_line(char *line);
+void	free_map_setting_var(char **key_value, char *line);
+
 // map.c
 void	set_direction(t_play_info *play_info, char direction);
 int		check_news(char c);
@@ -213,8 +217,8 @@ int		key_hook(int key_code, t_game *game);
 // command2.c
 void	push_up(t_game *game, double old_x, double old_y);
 void	push_down(t_game *game, double old_x, double old_y);
-void	push_left(t_game *game);
-void	push_right(t_game *game);
+void	push_left(t_game *game, double old_x, double old_y);
+void	push_right(t_game *game, double old_x, double old_y);
 
 // put_img.c
 void	put_img(t_game *game, t_img image, int loc, int img_size);
